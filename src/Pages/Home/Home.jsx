@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 
 const Home = () => {
+
+
     return (
-        <div className=" overflow-hidden " >
+        <div className=" overflow-hidden h-[609px]" >
 
             <div className="md:flex md:justify-around md:gap-14 lg:gap-0">
                 <div className="text-white md:ml-28 lg:ml-20 mt-14  lg:w-auto md:w-[300px]" >
@@ -45,8 +48,8 @@ const Home = () => {
             </div>
 
 
-            <div className="h-auto w-[350px]">
-                <img className="h-auto w-auto" src="/banner_img_2.png" alt="" />
+            <div className="text-black md:-mt-56 lg:-mt-72">
+                <img src="/banner_3.png" alt="" />
             </div>
 
         </div>

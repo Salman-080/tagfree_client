@@ -1,15 +1,24 @@
 // import { Tab, Tabs } from "@nextui-org/react";
-import * as React from 'react';
+
 import { IoReorderThreeOutline } from "react-icons/io5";
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
+    const location=useLocation();
+    useEffect(()=>{
+        console.log(location);
+    },[location])
+
+    
+    
 
     return (
         <div
@@ -39,8 +48,8 @@ function a11yProps(index) {
 }
 
 const Navbar = () => {
-
-    const [value, setValue] = React.useState(0);
+    const navigate = useNavigate();
+    const [value, setValue] = useState(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -75,6 +84,13 @@ const Navbar = () => {
         },
     });
 
+    const handleHighlightsNavigate = () => {
+        navigate('/');
+    }
+    const handleSpecificationNavigate = () => {
+        navigate('/specification');
+    }
+
 
     return (
         <div className="text-white">
@@ -106,17 +122,19 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex ">
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
                         <li>
                             <details>
-                                <summary>Parent</summary>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
+                                <summary>Products</summary>
+
                             </details>
                         </li>
-                        <li><a>Item 3</a></li>
+                        <li>
+                            <details>
+                                <summary>Services</summary>
+
+                            </details>
+                        </li>
+                        <li><a>News</a></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
@@ -125,17 +143,18 @@ const Navbar = () => {
             </div>
 
             <div className='lg:w-[1390px] mx-auto text-gray-300'>
-              
+
             </div>
 
             <div className='mt-3'>
                 <ThemeProvider theme={theme}>
                     <Box sx={{ width: '100%', }}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider', marginLeft: '70px' }}>
+                            
                             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                <Tab label="Item One" {...a11yProps(0)} sx={{ fontSize: '14px'}}/>
-                                <Tab label="Item Two" {...a11yProps(1)} sx={{ fontSize: '14px'}}/>
-                                <Tab label="Item Three" {...a11yProps(2)} sx={{ fontSize: '14px'}}/>
+                                <Tab onClick={handleHighlightsNavigate} label="Item One" {...a11yProps(0)} sx={{ fontSize: '14px' }} />
+                                <Tab onClick={handleSpecificationNavigate} label="Item Two" {...a11yProps(1)} sx={{ fontSize: '14px' }} />
+                                <Tab label="Item Three" {...a11yProps(2)} sx={{ fontSize: '14px' }} />
                             </Tabs>
                         </Box>
 
@@ -144,7 +163,9 @@ const Navbar = () => {
 
             </div>
 
-          
+           
+
+
         </div>
     );
 };

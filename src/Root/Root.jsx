@@ -6,9 +6,12 @@ const Root = () => {
         <div className="bg-black ">
             <Navbar></Navbar>
 
-            <div>
+            {/* <div className="min-h-screen md:min-h-[150vh] lg:min-h-[85vh]">
                 <Outlet></Outlet>
-            </div>
+            </div> */}
+          
+                <Outlet></Outlet>
+         
 
         </div>
     );
