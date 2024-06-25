@@ -10,6 +10,12 @@ import {
 import Root from './Root/Root';
 import Home from './Pages/Home/Home';
 import Specification from './Pages/Specification/Specification';
+import Highlights from './Pages/Highlights/Highlights';
+import Register from './Pages/Register/Register';
+import Login from './Pages/Login/Login';
+import Provider from './Provider/Provider';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+
 
 
 const router = createBrowserRouter([
@@ -19,11 +25,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Highlights></Highlights>,
       },
       {
         path: "/specification",
         element: <Specification></Specification>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/home",
+        element: <PrivateRoute><Home></Home></PrivateRoute>,
       },
 
     ]
@@ -32,9 +50,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <NextUIProvider>
-      <RouterProvider router={router} />
-    </NextUIProvider>
+    <Provider>
+      <NextUIProvider>
+        <RouterProvider router={router} />
+      </NextUIProvider>
+    </Provider>
+
 
   </React.StrictMode>,
 )

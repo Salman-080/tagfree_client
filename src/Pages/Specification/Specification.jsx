@@ -1,5 +1,7 @@
 
+
 const Specification = () => {
+    
     return (
         <div className="flex flex-col-reverse md:flex-row ">
             <div className="relative mt-12 hidden md:flex">
@@ -18,7 +20,7 @@ const Specification = () => {
                 <img className=" md:h-[380px] md:w-[220px] lg:h-[560px] lg:w-[320px] md:-ml-16 lg:-ml-0" src="/tools.png" alt="" />
             </div>
 
-            <div className="text-center space-y-12 lg:ml-36 mt-2">
+            <div className="text-center space-y-12 lg:ml-36 mt-4">
                 <div className=" space-y-2">
                     <h2 className="text-white text-4xl font-semibold">LIVE TRACKING</h2>
                     <p className="text-gray-400 text-lg">
@@ -46,36 +48,8 @@ const Specification = () => {
                         and reliable performance.
                     </p>
                 </div>
-                <div className=" space-y-2">
-                    <h2 className="text-white text-4xl font-semibold">  IOS & ANDROID</h2>
-                    <p className="text-gray-400 text-lg">
-                      
-                        Whether you prefer <br />
-                        iPhone or Android smartphones, <br />
-                        our device ensures seamless connectivity <br />
-                        and reliable performance.
-                    </p>
-                </div>
-                <div className=" space-y-2">
-                    <h2 className="text-white text-4xl font-semibold">  IOS & ANDROID</h2>
-                    <p className="text-gray-400 text-lg">
-                      
-                        Whether you prefer <br />
-                        iPhone or Android smartphones, <br />
-                        our device ensures seamless connectivity <br />
-                        and reliable performance.
-                    </p>
-                </div>
-                <div className=" space-y-2">
-                    <h2 className="text-white text-4xl font-semibold">  IOS & ANDROID</h2>
-                    <p className="text-gray-400 text-lg">
-                      
-                        Whether you prefer <br />
-                        iPhone or Android smartphones, <br />
-                        our device ensures seamless connectivity <br />
-                        and reliable performance.
-                    </p>
-                </div>
+              
+                
 
 
             </div>

@@ -1,19 +1,28 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../FixedComponents/Navbar/Navbar";
+import { useState } from "react";
 
 const Root = () => {
+    const location = useLocation();
+
+    console.log(location);
     return (
-        <div className="bg-black ">
+
+
+        <div className="bg-black h-screen flex flex-col">
             <Navbar></Navbar>
 
-            {/* <div className="min-h-screen md:min-h-[150vh] lg:min-h-[85vh]">
+            <div className="bg-black flex-1">
                 <Outlet></Outlet>
-            </div> */}
-          
-                <Outlet></Outlet>
-         
+            </div>
+
 
         </div>
+
+
+
+
+
     );
 };
 

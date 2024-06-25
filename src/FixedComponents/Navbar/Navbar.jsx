@@ -6,19 +6,18 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User, NavbarContent, Input } from "@nextui-org/react";
+import { AuthContext } from "../../Provider/Provider";
+import { FaSearch } from "react-icons/fa";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa6";
 
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
-    const location=useLocation();
-    useEffect(()=>{
-        console.log(location);
-    },[location])
 
-    
-    
 
     return (
         <div
@@ -50,10 +49,22 @@ function a11yProps(index) {
 const Navbar = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState(null);
+    const { user, logOut } = useContext(AuthContext);
+    const [search, setSearch] = useState(true);
+    const location = useLocation();
+
+
+    useEffect(() => {
+        console.log(location);
+    }, [location])
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const handleSearch = () => {
+        setSearch(!search);
+    }
 
     // const tabStyles = {
     //     color: 'white', 
@@ -91,6 +102,38 @@ const Navbar = () => {
         navigate('/specification');
     }
 
+    const handleLogOut = () => {
+        logOut()
+            .then(res => {
+
+            })
+            .catch(err => {
+
+            })
+    }
+
+    //if the username length is more than 20, then the rest will be ellipsed ...
+    const userNameSlice = (name, len) => {
+        if (name?.length <= len) {
+            return name;
+        }
+        else {
+            return name.slice(0, len) + '...'
+        }
+    }
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setValue(0); // Set active tab index for Highlights
+        } else if (location.pathname === '/specification') {
+            setValue(1); // Set active tab index for Specification
+        } else {
+            setValue(null); // Set null if neither route matches
+        }
+    }, [location.pathname]);
+
+
+
 
     return (
         <div className="text-white">
@@ -112,9 +155,9 @@ const Navbar = () => {
                             <li><a>Item 3</a></li>
                         </ul>
                     </div>
-                    <div className="flex  items-center">
-                        <div className="h">
-                            <IoReorderThreeOutline className="text-white h-[42px] w-[42px] mt-[2px]" />
+                    <div className="flex  items-center gap-2">
+                        <div className="">
+                            <IoReorderThreeOutline className="text-white h-[42px] w-[42px] mt-[2px] cursor-pointer" />
                         </div>
                         <a className="btn btn-ghost text-2xl text-white">TAGFREE</a>
                     </div>
@@ -137,24 +180,86 @@ const Navbar = () => {
                         <li><a>News</a></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+                <div className="navbar-end space-x-6">
+                    {
+                        search ? <button><FaSearch onClick={handleSearch} className="text-white" /></button>
+                            :
+                            <Input
+                                classNames={{
+                                    base: "max-w-full sm:max-w-[10rem] h-10",
+                                    mainWrapper: "h-full",
+                                    input: "text-small",
+                                    inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                                }}
+                                placeholder="Type to search..."
+                                size="sm"
+                                // startContent={<SearchIcon size={18} />}
+                                startContent={<FaSearch className="text-white" />}
+                                type="search"
+                            />
+                    }
+
+
+                    <MdOutlineShoppingCart className="text-lg cursor-pointer" />
+
+                    {
+                        user ? <div className="flex items-center gap-4">
+
+                            <Dropdown placement="bottom-start">
+                                <DropdownTrigger>
+                                    <User
+                                        as="button"
+                                        avatarProps={{
+                                            isBordered: true,
+                                            src: user?.photoURL,
+                                        }}
+                                        className="transition-transform"
+                                        // description="@tonyreichert"
+                                        name={userNameSlice(user?.displayName || "", 20)}
+                                    />
+                                </DropdownTrigger>
+                                <DropdownMenu aria-label="User Actions" variant="flat">
+                                    <DropdownItem key="profile" className="h-14 gap-2">
+                                        <p className="font-bold">Signed in as</p>
+                                        <p className="font-bold">{user?.email}</p>
+                                    </DropdownItem>
+
+                                    <DropdownItem onClick={handleLogOut} key="logout" color="danger">
+                                        Log Out
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
+                        </div>
+                            :
+                            <Link to="/login">
+
+
+                                <button className="bg-white px-[26px] py-1 rounded-xl text-black flex items-center justify-center gap-2">
+                                    <FaRegUser className="text-md" />
+                                    <p>Sign In</p>
+
+                                </button>
+                            </Link>
+                    }
+
                 </div>
             </div>
 
-            <div className='lg:w-[1390px] mx-auto text-gray-300'>
-
+            <div className='lg:w-[1385px] mx-auto border-1 border-gray-700'>
+                
             </div>
+
 
             <div className='mt-3'>
                 <ThemeProvider theme={theme}>
                     <Box sx={{ width: '100%', }}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider', marginLeft: '70px' }}>
-                            
+
                             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                <Tab onClick={handleHighlightsNavigate} label="Item One" {...a11yProps(0)} sx={{ fontSize: '14px' }} />
-                                <Tab onClick={handleSpecificationNavigate} label="Item Two" {...a11yProps(1)} sx={{ fontSize: '14px' }} />
-                                <Tab label="Item Three" {...a11yProps(2)} sx={{ fontSize: '14px' }} />
+
+                                <Tab onClick={handleHighlightsNavigate} label="HighLights" {...a11yProps(0)} sx={{ fontSize: '12px' }} />
+                                <Tab onClick={handleSpecificationNavigate} label="Specification" {...a11yProps(1)} sx={{ fontSize: '12px' }} />
+
                             </Tabs>
                         </Box>
 
@@ -163,7 +268,9 @@ const Navbar = () => {
 
             </div>
 
-           
+
+
+
 
 
         </div>
