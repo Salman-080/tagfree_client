@@ -128,6 +128,16 @@ const Register = () => {
             })
             .catch(err => {
                 console.log(err);
+                toast.error(err.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             })
     }
 
@@ -140,7 +150,7 @@ const Register = () => {
                 <div className="text-center lg:text-left">
                     <br />
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-[#222222]  lg:px-8 lg:py-[12px] ">
+                <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-[#222222] px-5 lg:px-8 py-[8px] lg:py-[12px] ">
                     <h1 className="text-2xl md:text-3xl font-bold text-center mt-[8px] text-white">Register Now</h1>
                     <form onSubmit={handleRegister} className="space-y-[12px] text-white mt-[6px] ">
 
@@ -158,7 +168,7 @@ const Register = () => {
                                 <span className="label-text text-white">Image</span>
                             </label>
 
-                            <input name="image" type="file" placeholder="Your Photo Url" className="" />
+                            <input name="image" type="file" placeholder="Your Photo Url" className="" required/>
                         </div>
                         <div className="form-control space-y-1">
 
@@ -178,7 +188,7 @@ const Register = () => {
                         </div>
                         <p className="text-sm text-gray-400">Already Have an Account? <Link to="/login"><span className="text-blue-600">Login</span></Link></p>
                         <div className="form-control mt-6">
-                            <button className="py-[8px] bg-blue-500 rounded-lg">Register</button>
+                            <button className="py-[8px] bg-[#4A00FF] rounded-lg">Register</button>
                         </div>
                     </form>
 

@@ -10,6 +10,8 @@ const Provider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const auth = getAuth(app);
+  const [passResetRequestSuccess, setPassResetRequestSuccess]=useState("");
+  const [passResetRequestError, setPassResetRequestError]=useState("");
 
   const googleSignIn = () => {
     setLoading(true);
@@ -29,14 +31,15 @@ const Provider = ({ children }) => {
   }
 
   const resetPassword = (email) => {
-    // console.log(email);
-
+    console.log(email);
+    setPassResetRequestSuccess("");
+    setPassResetRequestError("");
     if(!email){
-      alert("please give an email");
+      setPassResetRequestError("Please enter an email!");
       return;
     }
     else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      alert("give an valid email");
+      setPassResetRequestError("Please give an valid email!");
       return;
     }
     else{
@@ -45,11 +48,15 @@ const Provider = ({ children }) => {
         // Password reset email sent!
         // ..
         console.log(res);
+        setPassResetRequestSuccess("A password reset link is sent to your email. Please check your email!");
+
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
+        setPassResetRequestError(errorMessage);
+      
       });
     }
 
@@ -109,7 +116,11 @@ const Provider = ({ children }) => {
     loading,
     logOut,
     googleSignIn,
-    resetPassword
+    resetPassword,
+    passResetRequestSuccess,
+    passResetRequestError,
+    setPassResetRequestSuccess,
+    setPassResetRequestError
 
   }
   console.log(user)

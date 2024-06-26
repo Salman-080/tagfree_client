@@ -1,4 +1,3 @@
-// import { Tab, Tabs } from "@nextui-org/react";
 
 import { IoReorderThreeOutline } from "react-icons/io5";
 import PropTypes from 'prop-types';
@@ -6,9 +5,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from "react";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User, NavbarContent, Input } from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User, Input } from "@nextui-org/react";
 import { AuthContext } from "../../Provider/Provider";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -48,9 +47,9 @@ function a11yProps(index) {
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(false);
     const { user, logOut } = useContext(AuthContext);
-    const [search, setSearch] = useState(true);
+    const [searchActive, setSearchActive] = useState(true);
     const location = useLocation();
 
 
@@ -62,8 +61,8 @@ const Navbar = () => {
         setValue(newValue);
     };
 
-    const handleSearch = () => {
-        setSearch(!search);
+    const handleSearchActive = () => {
+        setSearchActive(false);
     }
 
     // const tabStyles = {
@@ -128,38 +127,42 @@ const Navbar = () => {
         } else if (location.pathname === '/specification') {
             setValue(1); // Set active tab index for Specification
         } else {
-            setValue(null); // Set null if neither route matches
+            setValue(false); // Set null if neither route matches
         }
-    }, [location.pathname]);
+    }, [location?.pathname]);
 
 
 
 
     return (
         <div className="text-white">
-            <div className="navbar bg-black  lg:px-[80px]">
+            <div className="navbar bg-black  lg:px-[80px] ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black">
                             <li>
-                                <a>Parent</a>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
+                                <details>
+                                    <summary>Products</summary>
+
+                                </details>
                             </li>
-                            <li><a>Item 3</a></li>
+                            <li>
+                                <details>
+                                    <summary>Services</summary>
+
+                                </details>
+                            </li>
+                            <li><a>News</a></li>
                         </ul>
                     </div>
-                    <div className="flex  items-center gap-2">
+                    <div className="flex items-center md:gap-2 ml-10 md:ml-[70px] lg:ml-0">
                         <div className="">
-                            <IoReorderThreeOutline className="text-white h-[42px] w-[42px] mt-[2px] cursor-pointer" />
+                            <IoReorderThreeOutline className="text-white h-[30px] w-[30px] md:h-[42px] md:w-[42px] mt-[2px] cursor-pointer" />
                         </div>
-                        <a className="btn btn-ghost text-2xl text-white">TAGFREE</a>
+                        <a className="btn btn-ghost text-2xl  text-white">TAGFREE</a>
                     </div>
 
                 </div>
@@ -180,22 +183,26 @@ const Navbar = () => {
                         <li><a>News</a></li>
                     </ul>
                 </div>
-                <div className="navbar-end space-x-6">
+                <div className="navbar-end space-x-[9px] md:space-x-4 lg:space-x-6 ">
                     {
-                        search ? <button><FaSearch onClick={handleSearch} className="text-white" /></button>
+                        searchActive ? <button><FaSearch onClick={handleSearchActive} className="text-white" /></button>
                             :
                             <Input
                                 classNames={{
-                                    base: "max-w-full sm:max-w-[10rem] h-10",
+                                    base: "max-w-full sm:max-w-[10rem] h-10  ",
                                     mainWrapper: "h-full",
                                     input: "text-small",
                                     inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+
                                 }}
                                 placeholder="Type to search..."
                                 size="sm"
                                 // startContent={<SearchIcon size={18} />}
                                 startContent={<FaSearch className="text-white" />}
                                 type="search"
+
+
+
                             />
                     }
 
@@ -234,7 +241,7 @@ const Navbar = () => {
                             <Link to="/login">
 
 
-                                <button className="bg-white px-[26px] py-1 rounded-xl text-black flex items-center justify-center gap-2">
+                                <button className="bg-white px-[3px] py-[2px] md:px-[12px] md:py-[8px] lg:px-[26px] lg:py-1 rounded-lg md:rounded-lg lg:rounded-xl text-black flex items-center justify-center gap-1 md:gap-2">
                                     <FaRegUser className="text-md" />
                                     <p>Sign In</p>
 
@@ -246,7 +253,7 @@ const Navbar = () => {
             </div>
 
             <div className='lg:w-[1385px] mx-auto border-1 border-gray-700'>
-                
+
             </div>
 
 
@@ -261,6 +268,7 @@ const Navbar = () => {
                                 <Tab onClick={handleSpecificationNavigate} label="Specification" {...a11yProps(1)} sx={{ fontSize: '12px' }} />
 
                             </Tabs>
+
                         </Box>
 
                     </Box>

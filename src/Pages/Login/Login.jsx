@@ -9,9 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
-    const { user, signIn, googleSignIn, resetPassword } = useContext(AuthContext);
-    const [resetEmail, setResetEmail] = useState("");
+    const { setPassResetRequestSuccess, setPassResetRequestError, passResetRequestSuccess, passResetRequestError, signIn, googleSignIn, resetPassword } = useContext(AuthContext);
+    const [passResetEmailValue, setPassResetEmailValue] = useState("");
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
 
     const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const Login = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
-                    
+
                 });
 
                 setTimeout(() => {
@@ -76,24 +77,42 @@ const Login = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
-                    
+
                 });
-                
+
                 setTimeout(() => {
                     navigate("/home");
                 }, 2000)
-                
+
             })
             .catch(err => {
                 console.log(err);
+
+                toast.error(err.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             })
     }
 
     const handleEmailForReset = (e) => {
         // console.log(e.currentTarget.value)
-        setResetEmail(e.currentTarget.value);
+        setPassResetEmailValue(e.currentTarget.value); //email address from input field for reset password
     }
 
+
+    const handleResetField = () => {
+        setPassResetRequestSuccess('');
+        setPassResetRequestError('');
+
+
+    }
 
     return (
         <div>
@@ -121,9 +140,8 @@ const Login = () => {
                                 </label>
                                 <input name="password" type="password" placeholder="password" className="input input-bordered bg-gray-600" required />
                                 <label className="">
-                                    <Link onPress={onOpen} className="label-text-alt link link-hover text-white hover:text-blue-900 mt-1 text-md">Forgot password?</Link>
+                                    <Link onClick={handleResetField} onPress={onOpen} className="label-text-alt link link-hover text-white hover:text-blue-900 mt-1 text-md">Forgot password?</Link>
 
-                                    {/* <Button onPress={onOpen} color="primary">Open Modal</Button> */}
                                     <Modal
                                         isOpen={isOpen}
                                         onOpenChange={onOpenChange}
@@ -132,7 +150,12 @@ const Login = () => {
                                         <ModalContent>
                                             {(onClose) => (
                                                 <>
-                                                    <ModalHeader className="flex flex-col gap-1">Reset Password</ModalHeader>
+                                                    <ModalHeader className="flex flex-col gap-1">Reset Password
+
+                                                        {/* <button onClick={() => handleOnClose(onClose)} className="absolute top-0 right-0 mt-2 mr-[5px] text-white">
+                                                            &times;
+                                                        </button> */}
+                                                    </ModalHeader>
                                                     <ModalBody>
                                                         <Input
                                                             autoFocus
@@ -143,15 +166,25 @@ const Login = () => {
                                                             placeholder="Enter your email"
                                                             variant="bordered"
                                                             onChange={handleEmailForReset}
+
                                                         />
 
 
                                                     </ModalBody>
+                                                    <ModalBody>
+                                                        {
+                                                            passResetRequestSuccess && <p className="text-green-600 text-sm">{passResetRequestSuccess}</p>
+                                                        }
+                                                        {
+                                                            passResetRequestError && <p className="text-red-600 text-sm">{passResetRequestError}</p>
+                                                        }
+
+                                                    </ModalBody>
                                                     <ModalFooter>
-                                                        <Button color="danger" variant="flat" onPress={onClose}>
+                                                        <Button color="danger" variant="flat" onPress={(onClose)}>
                                                             Close
                                                         </Button>
-                                                        <Button color="primary" onClick={() => resetPassword(resetEmail)}>
+                                                        <Button color="primary" onClick={() => {resetPassword(passResetEmailValue)} }>
                                                             Confirm
                                                         </Button>
                                                     </ModalFooter>
@@ -177,23 +210,23 @@ const Login = () => {
 
                         </div>
                     </div>
-                </div>     
+                </div>
 
             </div>
 
             <ToastContainer
-                    position="top-center"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                    
-                />
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+
+            />
 
         </div >
 
