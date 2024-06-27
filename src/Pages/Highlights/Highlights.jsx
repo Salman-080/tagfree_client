@@ -1,7 +1,7 @@
 
 const Highlights = () => {
     return (
-        <div className="" >
+        <div className="bg-black" >
 
             <div className="md:flex md:justify-around ">
                 <div className="text-white md:ml-20 lg:ml-20   lg:w-auto md:w-[300px]" >

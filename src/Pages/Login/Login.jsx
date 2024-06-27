@@ -116,7 +116,7 @@ const Login = () => {
 
     return (
         <div>
-            <div className="flex flex-col items-center text-white">
+            <div className="flex flex-col items-center text-white bg-black">
                 <div className="w-full md:w-[500px] flex flex-col justify-center items-center ">
                     <div className="text-center lg:text-left">
                         <br />

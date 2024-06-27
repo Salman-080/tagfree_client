@@ -16,8 +16,6 @@ import Login from './Pages/Login/Login';
 import Provider from './Provider/Provider';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
-import ABCD from './Pages/Specification/ABCD';
-
 
 
 const router = createBrowserRouter([
@@ -45,11 +43,7 @@ const router = createBrowserRouter([
         path: "/home",
         element: <PrivateRoute><Home></Home></PrivateRoute>,
       },
-      {
-        path: "/spec",
-        element: <ABCD></ABCD>,
-      },
-
+    
     ]
   },
 ]);

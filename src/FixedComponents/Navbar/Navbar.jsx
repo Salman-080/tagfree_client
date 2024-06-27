@@ -135,7 +135,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="text-white">
+        <div className="text-white ">
             <div className="navbar bg-black md:px-2 lg:px-[80px] ">
                 <div className="navbar-start">
                     <div className="dropdown">

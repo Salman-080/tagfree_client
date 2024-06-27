@@ -145,8 +145,8 @@ const Register = () => {
 
 
     return (
-        <div className="flex flex-col  items-center ">
-            <div className=" w-full md:w-[500px] flex flex-col justify-center items-center  ">
+        <div className="flex flex-col  items-center bg-black">
+            <div className=" w-full md:w-[500px] flex flex-col justify-center items-center bg-black ">
                 <div className="text-center lg:text-left">
                     <br />
                 </div>
