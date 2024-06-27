@@ -159,7 +159,7 @@ const Register = () => {
                                 <span className="label-text text-white">Name</span>
                             </label>
 
-                            <input name="name" type="text" placeholder="Your Name" className="input input-bordered bg-gray-600 " required />
+                            <input name="name" type="text" placeholder="type your name" className="input input-bordered bg-gray-600 " required />
                         </div>
                         <div className="form-control space-y-1">
 
@@ -168,7 +168,7 @@ const Register = () => {
                                 <span className="label-text text-white">Image</span>
                             </label>
 
-                            <input name="image" type="file" placeholder="Your Photo Url" className="" required/>
+                            <input name="image" type="file" placeholder="your photo" className="" required/>
                         </div>
                         <div className="form-control space-y-1">
 
@@ -177,13 +177,13 @@ const Register = () => {
                                 <span className="label-text text-white">Email</span>
                             </label>
 
-                            <input name="email" type="email" placeholder="email" className="input input-bordered bg-gray-600 " required />
+                            <input name="email" type="email" placeholder="type your email" className="input input-bordered bg-gray-600 " required />
                         </div>
                         <div className="form-control space-y-1">
                             <label className="">
                                 <span className="label-text text-white">Password</span>
                             </label>
-                            <input name="password" type="password" placeholder="At least 6 characters" className="input input-bordered bg-gray-600 " required />
+                            <input name="password" type="password" placeholder="password must be at least 6 characters" className="input input-bordered bg-gray-600 " required />
 
                         </div>
                         <p className="text-sm text-gray-400">Already Have an Account? <Link to="/login"><span className="text-blue-600">Login</span></Link></p>

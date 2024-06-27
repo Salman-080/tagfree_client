@@ -6,7 +6,7 @@ const Highlights = () => {
             <div className="md:flex md:justify-around ">
                 <div className="text-white md:ml-20 lg:ml-20   lg:w-auto md:w-[300px]" >
 
-                    <h2 className="text-3xl md:text-xl lg:text-4xl mt-20 md:mt-10 lg:mt-7 text-center md:text-left">Smart Taggr</h2>
+                    <h2 className=" text-3xl md:text-xl lg:text-4xl mt-20 md:mt-10 lg:mt-7 text-center md:text-left">Smart Taggr</h2>
                     <div className="text-4xl md:text-3xl lg:text-7xl mt-4 md:mt-5 lg:mt-16 flex flex-col md:gap-1 lg:gap-5 text-center md:text-left">
                         <p>Connect. Track.</p>
 
@@ -18,7 +18,7 @@ const Highlights = () => {
                     <div className="flex items-center mt-6 md:mt-9 lg:mt-16 justify-center md:justify-normal">
 
 
-                        <div style={{ backgroundImage: "url(/banner_btn.png)" }} className="bg-no-repeat bg-center h-[50px] w-[110px] md:h-[30px] md:w-[80px] lg:h-[46px] lg:w-[170px] text-center rounded-full " >
+                        <div style={{ backgroundImage: "url(/banner_btn.png)" }} className="bg-no-repeat bg-center h-[50px] w-[110px] md:h-[30px] md:w-[80px] lg:h-[46px] lg:w-[170px] text-center rounded-full z-50 " >
                             <button className="h-full w-full md:text-xs lg:text-xl">Buy Now</button>
                         </div>
 

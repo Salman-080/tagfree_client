@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
 
 
 const Specification = () => {
-    
+    const [size, setSize]=useState(0);
+
+    useEffect(()=>{
+        setSize(window.innerWidth)
+    },[])
     return (
-        <div className="flex flex-col-reverse md:flex-row ">
+        <div className="flex flex-col-reverse md:flex-row h-full overflow-hidden">
             <div className="relative mt-12 hidden md:flex">
                 <div className=" h-[150px] w-[80px] md:h-[400px] md:w-[200px] lg:h-[550px] lg:w-[350px] ">
                     <img className="h-full w-full" src="/banner_3.png" alt="" />
@@ -22,11 +27,12 @@ const Specification = () => {
 
             <div className="text-center space-y-12 lg:ml-36 mt-5 md:md-4 lg:mt-4">
                 <div className=" space-y-2">
-                    <h2 className="text-white text-2xl md:text-xl lg:text-4xl font-semibold">LIVE TRACKING</h2>
+                    <h2 className="text-white text-2xl md:text-xl lg:text-4xl font-semibold">LIVE TRACKING </h2>
                     <p className="text-gray-400 text-base md:text-sm lg:text-lg ">
-                        Provides  the exact location
+                        Provides  the exact location  <p className="text-white">{size}</p>
                         <br /> of their tagged items or devices instantly
                         <br />   through the mobile app.
+                        
                     </p>
                 </div>
                 <div className=" space-y-2">

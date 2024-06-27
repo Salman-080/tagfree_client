@@ -27,10 +27,12 @@ module.exports = withMT({
   ],
   theme: {
     extend: {},
+ 
   },
   darkMode: "class",
   plugins: [
     require('daisyui'),
     nextui()
   ],
+  
 });

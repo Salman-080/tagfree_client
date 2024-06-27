@@ -136,7 +136,7 @@ const Navbar = () => {
 
     return (
         <div className="text-white">
-            <div className="navbar bg-black  lg:px-[80px] ">
+            <div className="navbar bg-black md:px-2 lg:px-[80px] ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -252,7 +252,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className='lg:w-[1385px] mx-auto border-1 border-gray-700'>
+            <div className='md:px-2 lg:mx-[80px]  border-1 border-gray-700'>
 
             </div>
 
@@ -273,6 +273,8 @@ const Navbar = () => {
 
                     </Box>
                 </ThemeProvider>
+
+                
 
             </div>
 

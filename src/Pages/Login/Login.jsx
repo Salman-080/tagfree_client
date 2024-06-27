@@ -132,13 +132,13 @@ const Login = () => {
                                     <span className="label-text text-white">Email</span>
                                 </label>
 
-                                <input name="email" type="email" placeholder="email" className="input input-bordered text-black bg-gray-600 " required />
+                                <input name="email" type="email" placeholder="type email" className="input input-bordered text-black bg-gray-600 " required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-white">Password</span>
                                 </label>
-                                <input name="password" type="password" placeholder="password" className="input input-bordered bg-gray-600" required />
+                                <input name="password" type="password" placeholder="type password" className="input input-bordered bg-gray-600" required />
                                 <label className="">
                                     <Link onClick={handleResetField} onPress={onOpen} className="label-text-alt link link-hover text-white hover:text-blue-900 mt-1 text-md">Forgot password?</Link>
 

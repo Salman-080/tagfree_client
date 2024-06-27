@@ -1,18 +1,21 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../FixedComponents/Navbar/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Root = () => {
     const location = useLocation();
+  
+
 
     console.log(location);
     return (
 
-
-        <div className="bg-black h-screen flex flex-col">
+        
+        <div className="bg-black h-screen  ">
             <Navbar></Navbar>
+            {/* <p className="text-white">{size}</p> */}
 
-            <div className="bg-black flex-1">
+            <div className="bg-black">
                 <Outlet></Outlet>
             </div>
 
